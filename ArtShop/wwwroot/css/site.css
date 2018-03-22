@@ -33,3 +33,12 @@
         display: none;
     }
 }
+
+.itemwrap {
+    display: flex;
+}
+
+img {
+    width: 300px;
+    height: auto;
+}

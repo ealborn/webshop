@@ -8,19 +8,8 @@
 
 @foreach (var painting in Model)
 {
-<div>
-    @painting.Title
-    <br />
-    <img src="~/images/@painting.Image" alt="product image" />
-    <br />
-    @painting.Description
-    <br />
-    @painting.Technique
-    <br />
-    @painting.Price
+    Html.RenderPartial("art", painting);
 
-</div> 
-    
 }
 
 

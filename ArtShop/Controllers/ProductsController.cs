@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 using ArtShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace ArtShop.Controllers
 {
     //using ArtShop.Models;
+    
 
     public class ProductsController : Controller
     {
-        private string connectionString;
+        private static List<ProductViewModel> art = new List<ProductViewModel>();
+        private readonly string connectionString;
+
+        public ProductsController(IConfiguration configuration)
+        {
+            this.connectionString = configuration.GetConnectionString("ConnectionString");
+        }
 
         public IActionResult Index()
         {
