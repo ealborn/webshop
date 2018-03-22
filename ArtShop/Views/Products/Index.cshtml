@@ -1,0 +1,27 @@
+﻿@model List<ArtShop.Models.ProductViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<p>Hello, testing that things work.</p>
+
+@foreach (var painting in Model)
+{
+<div>
+    @painting.Title
+    <br />
+    <img src="~/images/@painting.Image" alt="product image" />
+    <br />
+    @painting.Description
+    <br />
+    @painting.Technique
+    <br />
+    @painting.Price
+
+</div> 
+    
+}
+
+
+
