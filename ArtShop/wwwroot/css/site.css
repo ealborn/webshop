@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    width: 100vw;
 }
 
 /* Wrapping element */
@@ -34,11 +35,23 @@
     }
 }
 
-.itemwrap {
+.artContainer {
     display: flex;
+    flex-direction: row;
+    margin: 0px;
+
+    border: 2px solid purple;
+}
+.artWrap {
+    width: 50vw;
+    height: auto;
+    margin: 0px;
+    border: 2px solid skyblue;
 }
 
 img {
-    width: 300px;
+    width: 200px;
     height: auto;
+    margin: 0px;
+    border: 2px solid yellow;
 }
