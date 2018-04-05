@@ -10,9 +10,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace ArtShop.Controllers
 {
-    //using ArtShop.Models;
-    
-
     public class ProductsController : Controller
     {
         private static List<ProductViewModel> art = new List<ProductViewModel>();
@@ -25,18 +22,40 @@ namespace ArtShop.Controllers
 
         public IActionResult Index()
         {
-            //return View(new List<ProductViewModel>());//ersätt med resultat från databasen
 
-            List<ProductViewModel> news;
+            List<ProductViewModel> art;
             using (var connection = new SqlConnection(this.connectionString))
             {
-                news = connection.Query<ProductViewModel>("select * from Paintings").ToList();
+                art = connection.Query<ProductViewModel>("select * from Paintings").ToList();
             }
 
-            return View(news);
+            if (Request.Cookies["customerCookie"] == null)
+            {
+            var GuId = Guid.NewGuid();
+            Response.Cookies.Append("customerCookie", GuId.ToString());
+            }
+            //else
+            //{
+            //    var cookie = Request.Cookies["customerCookie"];
+            //}
+            // Response.Cookies.Delete --för att ta bort cookien senare.
 
-
-
+            return View(art);
         }
+
+        [HttpPost]
+        public IActionResult Index(CartViewModel model)
+        {
+            var cookie = Request.Cookies["customerCookie"];
+            string sql = "INSERT INTO Cart (ProductId, Guid) VALUES (@Id, @cookie)";
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                connection.Execute(sql, new { model.Id, cookie }); 
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

@@ -1,0 +1,30 @@
+﻿@model ArtShop.Models.OrderViewModel;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Order view</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Firstname)
+    @Html.EditorFor(model => model.Firstname)
+    <br />
+    @Html.LabelFor(model => model.Lastname)
+    @Html.EditorFor(model => model.Lastname)
+    <br />
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)
+    <br />
+    @Html.LabelFor(model => model.Phone)
+    @Html.EditorFor(model => model.Phone)
+    <br />
+    @Html.LabelFor(model => model.Address)
+    @Html.EditorFor(model => model.Address)
+    <br />
+    @Html.LabelFor(model => model.Zipcode)
+    @Html.EditorFor(model => model.Zipcode)
+    <br />
+
+}
+

@@ -1,0 +1,16 @@
+﻿@model CartViewModel
+
+<div class="cartWrap">
+    @Model.Id
+    <br />
+    @Model.Title
+    <br />
+    <img src="~/images/@Model.Image" alt="product image" />
+    <br />
+    @Model.Guid
+    <br />
+    @Model.Amount
+    <br />
+    <p> Price: @Model.Price </p>
+    <br />
+</div>
