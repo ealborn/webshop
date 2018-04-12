@@ -1,5 +1,5 @@
 ﻿
-@model ProductViewModel
+@model ArtShop.Project.Core.Models.ProductViewModel
 
 <div class="artWrap">
     @Model.Title
@@ -13,7 +13,7 @@
     @Model.Price
     <br />
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Add", "Cart"))
     {
         @Html.TextBoxFor(m => m.Id)
         <button type="submit">Köp</button>

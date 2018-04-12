@@ -7,6 +7,9 @@ using Dapper;
 using ArtShop.Models;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using ArtShop.Project.Core.Models;
+using Artshop.Project.Core.Services;
+using Artshop.Project.Core.Repositories.Implementations;
 
 namespace ArtShop.Controllers
 {
@@ -14,10 +17,15 @@ namespace ArtShop.Controllers
     {
         private static List<CartViewModel> Cart = new List<CartViewModel>();
         private readonly string connectionString;
+        private CartService cartService;
 
         public CartController(IConfiguration configuration)
         {
             this.connectionString = configuration.GetConnectionString("ConnectionString");
+
+            this.cartService = new CartService(
+            new CartRepository(
+                configuration.GetConnectionString("ConnectionString")));
         }
 
 
@@ -36,5 +44,12 @@ namespace ArtShop.Controllers
             return View(Cart);
         }
 
+        [HttpPost]
+        public IActionResult Add(ProductViewModel model)
+        {
+            var cookie = Request.Cookies["customerCookie"];
+            this.cartService.PostToCart(model.Id, cookie);
+            return RedirectToAction("Index");
+        }
     }
 }

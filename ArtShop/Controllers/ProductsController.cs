@@ -3,32 +3,34 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Artshop.Project.Core.Services;
+using Artshop.Project.Core.Repositories.Implementations;
+using ArtShop.Project.Core.Models;
 
 namespace ArtShop.Controllers
 {
     public class ProductsController : Controller
     {
         private static List<ProductViewModel> art = new List<ProductViewModel>();
-        private readonly string connectionString;
+        private readonly ProductService productService;
+        private string connectionString;
 
         public ProductsController(IConfiguration configuration)
         {
             this.connectionString = configuration.GetConnectionString("ConnectionString");
+            this.productService = new ProductService(
+                new ProductRepository(
+                    configuration.GetConnectionString("ConnectionString")));
         }
 
         public IActionResult Index()
         {
 
             List<ProductViewModel> art;
-            using (var connection = new SqlConnection(this.connectionString))
-            {
-                art = connection.Query<ProductViewModel>("select * from Paintings").ToList();
-            }
-
+            art = this.productService.GetAll();
             if (Request.Cookies["customerCookie"] == null)
             {
             var GuId = Guid.NewGuid();
@@ -42,20 +44,6 @@ namespace ArtShop.Controllers
 
             return View(art);
         }
-
-        [HttpPost]
-        public IActionResult Index(CartViewModel model)
-        {
-            var cookie = Request.Cookies["customerCookie"];
-            string sql = "INSERT INTO Cart (ProductId, Guid) VALUES (@Id, @cookie)";
-            using (var connection = new SqlConnection(this.connectionString))
-            {
-                connection.Execute(sql, new { model.Id, cookie }); 
-            }
-
-            return RedirectToAction("Index");
-        }
-
-
+        
     }
 }

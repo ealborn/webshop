@@ -1,4 +1,4 @@
-﻿@model ArtShop.Models.OrderViewModel;
+﻿@model ArtShop.Project.Core.Models.OrderViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -25,6 +25,8 @@
     @Html.LabelFor(model => model.Zipcode)
     @Html.EditorFor(model => model.Zipcode)
     <br />
+
+    <button type="submit">Send order</button>
 
 }
 
