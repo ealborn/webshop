@@ -16,9 +16,9 @@ namespace Artshop.Project.Core.Services
             this.checkoutRepository = checkoutRepository;
         }
 
-        public void PostToOrder(string Firstname)
+        public void PostToOrder(string Firstname, string Lastname, string Email, int Phone, string Address, int Zipcode)
         {
-            this.checkoutRepository.PostToOrder(Firstname);
+            this.checkoutRepository.PostToOrder(Firstname, Lastname, Email, Phone, Address, Zipcode);
         }
     }
 }

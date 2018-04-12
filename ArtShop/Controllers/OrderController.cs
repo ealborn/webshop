@@ -31,8 +31,8 @@ namespace ArtShop.Controllers
         [HttpPost]
         public IActionResult Index(OrderViewModel model)
         {
-            var cookie = Request.Cookies["customerCookie"];
-            this.checkoutService.PostToOrder(model.Firstname);
+            //var cookie = Request.Cookies["customerCookie"];
+            this.checkoutService.PostToOrder(model.Firstname, model.Lastname, model.Email, model.Phone, model.Address, model.Zipcode);
             return RedirectToAction("Index");
         }
     }
