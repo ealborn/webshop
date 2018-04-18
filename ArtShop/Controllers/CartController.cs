@@ -31,17 +31,17 @@ namespace ArtShop.Controllers
 
         public IActionResult Index()
         {
+            var cart = this.cartService.GetAll();
+            //List<CartViewModel> Cart;
+            //using (var connection = new SqlConnection(this.connectionString))
+            //{
+            //    Cart = connection.Query<CartViewModel>(
+            //            @"SELECT Paintings.Id, Paintings.Title, Paintings.Image, Paintings.Price, Cart.* 
+            //                    FROM Paintings
+            //                    JOIN Cart ON Cart.ProductId = Paintings.Id;").ToList();
+            //}
 
-            List<CartViewModel> Cart;
-            using (var connection = new SqlConnection(this.connectionString))
-            {
-                Cart = connection.Query<CartViewModel>(
-                        @"SELECT Paintings.Id, Paintings.Title, Paintings.Image, Paintings.Price, Cart.* 
-                                FROM Paintings
-                                JOIN Cart ON Cart.ProductId = Paintings.Id;").ToList();
-            }
-
-            return View(Cart);
+            return View(cart);
         }
 
         [HttpPost]

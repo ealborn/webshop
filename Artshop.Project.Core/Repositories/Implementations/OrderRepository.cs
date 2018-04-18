@@ -15,16 +15,14 @@ namespace Artshop.Project.Core.Repositories.Implementations
             this.ConnectionString = connectionString;
         }
 
-        public void PostToOrder(string Firstname, string Lastname, string Email, int Phone, string Address, int Zipcode)
+        public void PostToOrder(string Firstname, string Lastname, string Email, int Phone, string Address, int Zipcode, string cookie)
         {
-            string sql = @"INSERT INTO Orders (Firstname, LastName, Email, Phone, Address, Zipcode) 
-                            VALUES (@Firstname, @Lastname, @Email, @Phone, @Address, @Zipcode)
-                            SELECT * FROM Cart
-                                WHERE Guid = @cookie";
+            string sql = @"INSERT INTO Orders (Firstname, LastName, Email, Phone, Address, Zipcode, Guid) 
+                            VALUES (@Firstname, @Lastname, @Email, @Phone, @Address, @Zipcode, @cookie)";
 
             using (var connection = new SqlConnection(this.ConnectionString))
             {
-                connection.Execute(sql, new { Firstname, Lastname, Email, Phone, Address, Zipcode });
+                connection.Execute(sql, new { Firstname, Lastname, Email, Phone, Address, Zipcode, cookie });
             }
         }
     }

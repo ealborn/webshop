@@ -26,16 +26,30 @@ namespace ArtShop.Controllers
                     configuration.GetConnectionString("ConnectionString")));
         }
 
+        private string GetOrCreateCookie()
+        {
+            if (this.Request.Cookies.ContainsKey("customerCookie"))
+            {
+                return this.Request.Cookies["customerCookie"];
+            }
+            var cookie = Guid.NewGuid().ToString();
+            this.Response.Cookies.Append("customerCookie", cookie.ToString());
+            return cookie;
+        }
+
+
         public IActionResult Index()
         {
 
             List<ProductViewModel> art;
             art = this.productService.GetAll();
-            if (Request.Cookies["customerCookie"] == null)
-            {
-            var GuId = Guid.NewGuid();
-            Response.Cookies.Append("customerCookie", GuId.ToString());
-            }
+
+            //if (Request.Cookies["customerCookie"] == null)
+            //{
+            //var GuId = Guid.NewGuid();
+            //Response.Cookies.Append("customerCookie", GuId.ToString());
+            //}
+
             //else
             //{
             //    var cookie = Request.Cookies["customerCookie"];

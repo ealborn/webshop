@@ -32,7 +32,7 @@ namespace ArtShop.Controllers
         public IActionResult Index(OrderViewModel model)
         {
             //var cookie = Request.Cookies["customerCookie"];
-            this.checkoutService.PostToOrder(model.Firstname, model.Lastname, model.Email, model.Phone, model.Address, model.Zipcode);
+            this.checkoutService.PostToOrder(model.Firstname, model.Lastname, model.Email, model.Phone, model.Address, model.Zipcode, Request.Cookies["customerCookie"]);
             return RedirectToAction("Index");
         }
     }
