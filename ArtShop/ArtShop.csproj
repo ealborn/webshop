@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Artshop.Project.Core\Artshop.Project.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
+
 </Project>
