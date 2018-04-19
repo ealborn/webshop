@@ -22,8 +22,6 @@ namespace ArtShop.Controllers
 
         public OrderController(IConfiguration configuration)
         {
-            //this.connectionString = configuration.GetConnectionString("ConnectionString");
-            //checkoutService = new OrderService(new OrderRepository(this.connectionString));
             this.connectionString = configuration.GetConnectionString("ConnectionString");
             this.orderService = new OrderService(new OrderRepository(this.connectionString), new CartRepository(this.connectionString));
         }
@@ -32,16 +30,17 @@ namespace ArtShop.Controllers
         {
             var cartId = Request.Cookies["customerCookie"];
             var Cart = this.orderService.GetAll(cartId);
-            //var cart = this.checkoutService.GetAll();
-            //return View(cart);
             return View(Cart);
         }
 
         [HttpPost]
-        public IActionResult Index(OrderViewModel model)
+        public IActionResult Index(OrderViewModel model, string cookie, string customerCookie)
         {
-            //var cookie = Request.Cookies["customerCookie"];
-            this.orderService.PostToOrder(model.Firstname, model.Lastname, model.Email, model.Phone, model.Address, model.Zipcode, Request.Cookies["customerCookie"]);
+            this.orderService.PostToOrder(model.Firstname, model.Lastname, model.Email, model.Address, model.Zipcode, Request.Cookies["customerCookie"]);
+
+            cookie = Request.Cookies["customerCookie"];
+            this.orderService.DeleteCart(cookie);
+
             return RedirectToAction("Index");
         }
     }

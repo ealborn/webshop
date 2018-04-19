@@ -4,10 +4,10 @@
 }
 
 <h2>My shopping cart</h2>
-<p>@*Purchased items show up here.*@</p>
 
-@foreach (var item in Model)
-{
-    Html.RenderPartial("Cart", item);
-}
-
+<div class="cartWrap">
+    @foreach (var item in Model)
+    {
+        Html.RenderPartial("Cart", item);
+    }
+</div>

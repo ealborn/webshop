@@ -3,39 +3,56 @@
     ViewData["Title"] = "Index";
 }
 
-
 <h2>Order</h2>
 
-@foreach (var Product in Model.Cart)
-{
-    @Product.Title
-}
+<ul class="list-group">
+    @foreach (var Product in Model.Cart)
+    {
+        <li class="list-group-item">
+            @(Product.Title)
+        </li>
+    }
+</ul>
 
-
-@*@Html.Partial("Order", Model);*@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.Firstname)
-    @Html.EditorFor(model => model.Firstname)
-    <br />
-    @Html.LabelFor(model => model.Lastname)
-    @Html.EditorFor(model => model.Lastname)
-    <br />
-    @Html.LabelFor(model => model.Email)
-    @Html.EditorFor(model => model.Email)
-    <br />
-    @Html.LabelFor(model => model.Phone)
-    @Html.EditorFor(model => model.Phone)
-    <br />
-    @Html.LabelFor(model => model.Address)
-    @Html.EditorFor(model => model.Address)
-    <br />
-    @Html.LabelFor(model => model.Zipcode)
-    @Html.EditorFor(model => model.Zipcode)
-    <br />
 
-    <button type="submit">Send order</button>
+        <p class="h6 mb-4">Please enter your information below to place your order</p>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Firstname)
+            @Html.TextBoxFor(model => model.Firstname, new {@class = "form-control"})
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-envelope prefix"></i>
+            @Html.LabelFor(model => model.Lastname)
+
+            @Html.TextBoxFor(model => model.Lastname, new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <i class="fa fa-envelope prefix"></i>
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+
+        </div>
+   
+        <div class="form-group">
+            <i class="fa fa-user prefix"></i>
+            @Html.LabelFor(model => model.Address)
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+
+        </div>
+
+        <div class="md-form">
+            <i class="fa fa-map prefix"></i>
+            @Html.LabelFor(model => model.Zipcode)
+            @Html.TextBoxFor(model => model.Zipcode, new { @class = "form-control" })
+        </div>
+
+        <button class="btn btn-primary" type="submit">Send order</button>
 }
 

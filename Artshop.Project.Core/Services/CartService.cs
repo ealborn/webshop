@@ -14,6 +14,7 @@ namespace Artshop.Project.Core.Services
         {
             this.cartRepository = cartRepository;
         }
+
         public List<CartViewModel> GetAll(string Id)
         {
             return this.cartRepository.GetAll(Id);
@@ -23,10 +24,5 @@ namespace Artshop.Project.Core.Services
         {
             this.cartRepository.PostToCart(Id, Cookie);
         }
-
-        //public void DeleteCart(int Id, string Cookie)
-        //{
-        //    this.cartRepository.DeleteCart(Id, Cookie);
-        //}
     }
 }

@@ -44,20 +44,8 @@ namespace ArtShop.Controllers
             List<ProductViewModel> art;
             art = this.productService.GetAll();
 
-            //if (Request.Cookies["customerCookie"] == null)
-            //{
-            //var GuId = Guid.NewGuid();
-            //Response.Cookies.Append("customerCookie", GuId.ToString());
-            //}
-
-            //else
-            //{
-            //    var cookie = Request.Cookies["customerCookie"];
-            //}
-            // Response.Cookies.Delete --för att ta bort cookien senare.
-
             return View(art);
         }
-        
+
     }
 }

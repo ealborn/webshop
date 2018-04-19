@@ -1,5 +1,4 @@
-﻿using Artshop.Project.Core.Repositories;
-using ArtShop.Project.Core.Models;
+﻿using ArtShop.Project.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,9 +17,14 @@ namespace Artshop.Project.Core.Services
             this.checkoutRepository = checkoutRepository;
         }
 
-        public void PostToOrder(string Firstname, string Lastname, string Email, int Phone, string Address, int Zipcode, string cookie)
+        public void PostToOrder(string Firstname, string Lastname, string Email, string Address, int Zipcode, string cookie)
         {
-            this.checkoutRepository.PostToOrder(Firstname, Lastname, Email, Phone, Address, Zipcode, cookie);
+            this.checkoutRepository.PostToOrder(Firstname, Lastname, Email, Address, Zipcode, cookie);
+        }
+
+        public void DeleteCart(string cookie)
+        {
+            this.checkoutRepository.DeleteCart(cookie);
         }
 
         public OrderViewModel GetAll(string Id)

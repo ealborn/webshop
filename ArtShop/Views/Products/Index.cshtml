@@ -4,13 +4,17 @@
 }
 
 <h2>Art</h2>
-<div class="artContainer">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            @foreach (var painting in Model)
+            {
+                Html.RenderPartial("art", painting);
+            }
 
-    @foreach (var painting in Model)
-    {
-        Html.RenderPartial("art", painting);
-    }
+
+        </div>
+    </div>
 </div>
-
 
 

@@ -1,24 +1,22 @@
 ﻿
 @model ArtShop.Project.Core.Models.ProductViewModel
 
-<div class="artWrap">
-    <h3>@Model.Title</h3>
-    <br />
-    <img src="~/images/@Model.Image" alt="product image" />
-    <br />
-    @Model.Description
-    <br />
-    @Model.Technique
-    <br />
-    @Model.Price
-    <br />
+<div class="card products">
+    <div class="card-body">
+        <img class="card-img-top" src="~/images/@Model.Image" alt="product image" />
+        <h3 class="card-title">@Model.Title</h3>
+        <p class="card-text"> @Model.Description</p>
+        <p class="card-text"> @Model.Technique</p>
+        <p class="card-subtitle"> @Model.Price</p>
 
-    @using (Html.BeginForm("Add", "Cart"))
-    {
-        @Html.TextBoxFor(m => m.Id)
-        <button type="submit">Köp</button>
-    }
-
+        @using (Html.BeginForm("Add", "Cart"))
+        {
+            @*@Html.TextBoxFor(m => m.Id)*@
+            <button class="btn btn-primary" type="submit">Buy</button>
+        }
+    </div>
+    <br />
 </div>
+
 
 

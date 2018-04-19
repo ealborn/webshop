@@ -29,7 +29,6 @@ namespace ArtShop.Core.UnitTest.Services
                 new ProductViewModel { Id = 1 }
             };
 
-
             A.CallTo(() => this.productRepository.GetAll()).Returns(products);
 
             // Act
@@ -38,6 +37,6 @@ namespace ArtShop.Core.UnitTest.Services
             // Assert
             Assert.That(result, Is.EqualTo(products));
         }
-    
+
     }
 }

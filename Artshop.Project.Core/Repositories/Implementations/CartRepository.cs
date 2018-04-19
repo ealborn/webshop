@@ -11,6 +11,7 @@ namespace Artshop.Project.Core.Repositories.Implementations
     public class CartRepository
     {
         private string ConnectionString;
+
         public CartRepository(string connectionString)
         {
             this.ConnectionString = connectionString;
@@ -33,18 +34,8 @@ namespace Artshop.Project.Core.Repositories.Implementations
             string sql = "INSERT INTO Cart (ProductId, Guid) VALUES (@Id, @cookie)";
             using (var connection = new SqlConnection(this.ConnectionString))
             {
-                connection.Execute(sql, new { Id, Cookie });
+                connection.Execute(sql, new { Id=Id, Cookie });
             }
-
         }
-
-        //public void DeleteCart(int Id, string Cookie)
-        //{
-        //    using (var connection = new SqlConnection(this.ConnectionString))
-        //    {
-        //        var sql = "DELETE FROM Cart WHERE CookieId = @cookie";
-        //        connection.Execute(sql, new { Cookie });
-        //    }
-        //}
     }
 }

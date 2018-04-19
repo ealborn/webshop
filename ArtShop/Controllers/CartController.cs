@@ -45,13 +45,5 @@ namespace ArtShop.Controllers
             this.cartService.PostToCart(model.Id, cookie);
             return RedirectToAction("Index");
         }
-
-        //[HttpPost]
-        //public IActionResult Delete(CartViewModel model)
-        //{
-        //    var cookie = Request.Cookies["customerCookie"];
-        //    this.cartService.DeleteCart(model.Id, cookie);
-        //    return RedirectToAction("Index", "Shoe");
-        //}
     }
 }

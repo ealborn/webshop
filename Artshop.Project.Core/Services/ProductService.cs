@@ -17,7 +17,6 @@ namespace Artshop.Project.Core.Services
 
         public List<ProductViewModel> GetAll()
         {
-            //denna metod ska bara kalla på och returnera metoden i product repository
             return this.productRepository.GetAll();
         }
     }

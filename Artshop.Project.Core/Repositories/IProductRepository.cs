@@ -7,9 +7,6 @@ namespace Artshop.Project.Core.Repositories
 {
     public interface IProductRepository
     {
-        //här skrivs bara namn på metoder och vad de ska returnera
-        List<ProductViewModel> GetAll();
-
-        
+        List<ProductViewModel> GetAll();  
     }
 }
