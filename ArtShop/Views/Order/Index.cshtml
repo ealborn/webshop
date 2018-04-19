@@ -3,7 +3,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Order view</h2>
+
+<h2>Order</h2>
+
+@foreach (var Product in Model.Cart)
+{
+    @Product.Title
+}
+
+
+@*@Html.Partial("Order", Model);*@
 
 @using (Html.BeginForm())
 {

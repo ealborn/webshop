@@ -14,14 +14,19 @@ namespace Artshop.Project.Core.Services
         {
             this.cartRepository = cartRepository;
         }
-        public List<CartViewModel> GetAll()
+        public List<CartViewModel> GetAll(string Id)
         {
-            return this.cartRepository.GetAll();
+            return this.cartRepository.GetAll(Id);
         }
 
         public void PostToCart(int Id, string Cookie)
         {
             this.cartRepository.PostToCart(Id, Cookie);
         }
+
+        //public void DeleteCart(int Id, string Cookie)
+        //{
+        //    this.cartRepository.DeleteCart(Id, Cookie);
+        //}
     }
 }

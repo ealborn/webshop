@@ -11,6 +11,7 @@ using ArtShop.Project.Core.Models;
 using Artshop.Project.Core.Services;
 using Artshop.Project.Core.Repositories.Implementations;
 
+
 namespace ArtShop.Controllers
 {
     public class CartController : Controller
@@ -31,17 +32,10 @@ namespace ArtShop.Controllers
 
         public IActionResult Index()
         {
-            var cart = this.cartService.GetAll();
-            //List<CartViewModel> Cart;
-            //using (var connection = new SqlConnection(this.connectionString))
-            //{
-            //    Cart = connection.Query<CartViewModel>(
-            //            @"SELECT Paintings.Id, Paintings.Title, Paintings.Image, Paintings.Price, Cart.* 
-            //                    FROM Paintings
-            //                    JOIN Cart ON Cart.ProductId = Paintings.Id;").ToList();
-            //}
-
+            var cartId = Request.Cookies["customerCookie"];
+            var cart = this.cartService.GetAll(cartId);
             return View(cart);
+
         }
 
         [HttpPost]
@@ -51,5 +45,13 @@ namespace ArtShop.Controllers
             this.cartService.PostToCart(model.Id, cookie);
             return RedirectToAction("Index");
         }
+
+        //[HttpPost]
+        //public IActionResult Delete(CartViewModel model)
+        //{
+        //    var cookie = Request.Cookies["customerCookie"];
+        //    this.cartService.DeleteCart(model.Id, cookie);
+        //    return RedirectToAction("Index", "Shoe");
+        //}
     }
 }

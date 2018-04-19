@@ -16,7 +16,7 @@ namespace Artshop.Project.Core.Repositories.Implementations
             this.ConnectionString = connectionString;
         }
 
-        public List<CartViewModel> GetAll()
+        public List<CartViewModel> GetAll(string Id)
         {
             using (var connection = new SqlConnection(this.ConnectionString))
             {
@@ -37,5 +37,14 @@ namespace Artshop.Project.Core.Repositories.Implementations
             }
 
         }
+
+        //public void DeleteCart(int Id, string Cookie)
+        //{
+        //    using (var connection = new SqlConnection(this.ConnectionString))
+        //    {
+        //        var sql = "DELETE FROM Cart WHERE CookieId = @cookie";
+        //        connection.Execute(sql, new { Cookie });
+        //    }
+        //}
     }
 }

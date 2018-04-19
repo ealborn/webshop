@@ -9,16 +9,26 @@ namespace Artshop.Project.Core.Services
 {
     public class OrderService
     {
-        private OrderRepository checkoutRepository;
+        private readonly OrderRepository checkoutRepository;
+        private readonly CartRepository cartRepository;
 
-        public OrderService(OrderRepository checkoutRepository)
+        public OrderService(OrderRepository checkoutRepository, CartRepository cartRepository)
         {
+            this.cartRepository = cartRepository;
             this.checkoutRepository = checkoutRepository;
         }
 
         public void PostToOrder(string Firstname, string Lastname, string Email, int Phone, string Address, int Zipcode, string cookie)
         {
             this.checkoutRepository.PostToOrder(Firstname, Lastname, Email, Phone, Address, Zipcode, cookie);
+        }
+
+        public OrderViewModel GetAll(string Id)
+        {
+            var cart = this.cartRepository.GetAll(Id);
+            var checkoutModel = new OrderViewModel { Cart = cart };
+
+            return checkoutModel;
         }
     }
 }

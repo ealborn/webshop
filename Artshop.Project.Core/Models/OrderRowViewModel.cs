@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Artshop.Project.Core.Models
+namespace ArtShop.Project.Core.Models
 {
     public class OrderRowViewModel
     {

@@ -16,5 +16,7 @@ namespace ArtShop.Project.Core.Models
         public string Address { get; set; }
         public int Zipcode { get; set; }
         public int Cartid { get; set; }
+
+        public List<CartViewModel> Cart { get; set; }
     }
 }
