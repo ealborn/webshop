@@ -4,10 +4,14 @@
 }
 
 <h2>My shopping cart</h2>
+<div class="table-responsive">
 
-<div class="cartWrap">
-    @foreach (var item in Model)
-    {
-        Html.RenderPartial("Cart", item);
-    }
+    <table class="table table-striped">
+
+        @foreach (var product in Model)
+        {
+            Html.RenderPartial("Cart", product);
+        }
+
+    </table>
 </div>

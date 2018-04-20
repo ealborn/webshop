@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
+using Dapper;
+using ArtShop.Models;
 using Artshop.Project.Core.Repositories.Implementations;
 using Artshop.Project.Core.Services;
 using ArtShop.Project.Core.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Dapper;
-using ArtShop.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace ArtShop.Controllers

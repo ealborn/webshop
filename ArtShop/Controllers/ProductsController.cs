@@ -1,48 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Dapper;
 using Microsoft.Extensions.Configuration;
-using Artshop.Project.Core.Services;
-using Artshop.Project.Core.Repositories.Implementations;
+using System.Data.SqlClient;
+using Dapper;
 using ArtShop.Project.Core.Models;
+using Artshop.Project.Core.Repositories.Implementations;
+using Artshop.Project.Core.Services;
 
 namespace ArtShop.Controllers
 {
     public class ProductsController : Controller
     {
         private static List<ProductViewModel> art = new List<ProductViewModel>();
+
         private readonly ProductService productService;
-        private string connectionString;
 
         public ProductsController(IConfiguration configuration)
         {
-            this.connectionString = configuration.GetConnectionString("ConnectionString");
             this.productService = new ProductService(
                 new ProductRepository(
-                    configuration.GetConnectionString("ConnectionString")));
+                configuration.GetConnectionString("ConnectionString")));
         }
-
-        private string GetOrCreateCookie()
-        {
-            if (this.Request.Cookies.ContainsKey("customerCookie"))
-            {
-                return this.Request.Cookies["customerCookie"];
-            }
-            var cookie = Guid.NewGuid().ToString();
-            this.Response.Cookies.Append("customerCookie", cookie.ToString());
-            return cookie;
-        }
-
 
         public IActionResult Index()
         {
-
             List<ProductViewModel> art;
             art = this.productService.GetAll();
+
+            if (Request.Cookies["customerCookie"] == null)
+            {
+                var GuId = Guid.NewGuid();
+                Response.Cookies.Append("customerCookie", GuId.ToString());
+            }
 
             return View(art);
         }

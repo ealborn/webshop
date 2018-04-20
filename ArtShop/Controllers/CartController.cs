@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Dapper;
-using ArtShop.Models;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using Dapper;
+using ArtShop.Models;
 using ArtShop.Project.Core.Models;
-using Artshop.Project.Core.Services;
 using Artshop.Project.Core.Repositories.Implementations;
+using Artshop.Project.Core.Services;
 
 
 namespace ArtShop.Controllers
@@ -26,7 +26,7 @@ namespace ArtShop.Controllers
 
             this.cartService = new CartService(
             new CartRepository(
-                configuration.GetConnectionString("ConnectionString")));
+            configuration.GetConnectionString("ConnectionString")));
         }
 
 
@@ -35,7 +35,6 @@ namespace ArtShop.Controllers
             var cartId = Request.Cookies["customerCookie"];
             var cart = this.cartService.GetAll(cartId);
             return View(cart);
-
         }
 
         [HttpPost]

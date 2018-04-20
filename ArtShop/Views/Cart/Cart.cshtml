@@ -1,10 +1,14 @@
 ﻿@model CartViewModel
 
-<img class="cartImage" src="~/images/@Model.Image" alt="product image" />
-<div>
-    <p class="padding"> Item name: @Model.Title</p>
-
-    <p class="padding"> Price: @Model.Price</p>
-    <br />
-</div>
+<tr>
+    <th scope="col">
+        <img class="cartImage" src="~/images/@Model.Image" alt="product image" />
+    </th>
+    <th scope="col">
+        <p class="padding"> Item name: @Model.Title</p>
+    </th>
+    <th scope="col">
+        <p class="padding"> Price: @Model.Price</p>
+    </th>
+</tr>
 
